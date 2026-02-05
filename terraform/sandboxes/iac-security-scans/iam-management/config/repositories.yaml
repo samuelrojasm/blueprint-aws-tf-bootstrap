@@ -1,0 +1,20 @@
+repositories:
+  network-layer:
+    github_full_name: "tu-org/aws-network-infra"
+    description: "Gestiona VPC, Subnets y Route Tables"
+    managed_policy_arns:
+      - "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+  
+  security-layer:
+    github_full_name: "tu-org/aws-security-infra"
+    description: "Gestiona IAM Roles y KMS Keys"
+    managed_policy_arns:
+      - "arn:aws:iam::aws:policy/IAMFullAccess"
+      - "arn:aws:iam::aws:policy/AWSKeyManagementServicePowerUser"
+
+  compute-layer:
+    github_full_name: "tu-org/aws-compute-eks"
+    description: "Gestiona Clusters de EKS y Nodos"
+    managed_policy_arns:
+      - "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+      - "arn:aws:iam::aws:policy/AmazonEC2FullAccess"

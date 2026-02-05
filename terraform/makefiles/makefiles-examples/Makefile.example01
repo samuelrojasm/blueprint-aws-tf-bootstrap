@@ -1,0 +1,60 @@
+# scripts/Makefile
+
+# -----------------------------------------------------------------------------
+# MAKEFILE - CAPA 0: BOOTSTRAP
+# -----------------------------------------------------------------------------
+# Makefile inicializa la infraestructura:
+#	-  Backend remoto para resguardar el archivo terraform.tfstate (Inmutable)
+#	-  IAM OIDC IdP de Git Hub (solo se configura uno por cuenta)
+# -----------------------------------------------------------------------------
+
+#-----------------------------------
+# Variables de Configuración
+#-----------------------------------
+PROJECT_NAME ?=  sandbox
+REGION       ?=  us-east-1
+ENV          ?=  dev
+APP 		 ?=  terraform
+INFO		 ?=  tfstate
+ID		     ?=  ""
+
+TERRAFORM_DIR := ./terraform
+
+#----------------------
+# Nombre del Bucket S3
+#----------------------
+NAME_STATE_BUCKET := $(PROJECT_NAME)-$(ENV)-$(REGION)-$(APP)-$(INFO)-$(ID)
+
+#--------------------------------------
+# Comandos de Bootstrap (Local - Capa 0)
+#--------------------------------------
+.PHONY: bootstrap-init bootstrap-apply
+
+bootstrap-init:
+	@echo "🔧 Inicializando Bootstrap [$(ENV)]..."
+	cd $(TERRAFORM_DIR)/environments/$(ENV)/bootstrap && \
+	terraform init \
+		-backend-config="bucket=$(NAME_STATE_BUCKET)" \
+		-backend-config="key=bootstrap/terraform.tfstate" \
+		-backend-config="region=$(REGION)" \
+		-reconfigure
+
+bootstrap-apply:
+	cd $(TERRAFORM_DIR)/environments/$(ENV)/bootstrap && terraform apply -auto-approve
+
+#-----------------------------------------------------------
+# --- Comandos de Operación (Capa 2 - IAM Factory) ---
+# Estos son los que el pipeline de GitHub Actions ejecutará
+# #---------------------------------------------------------
+.PHONY: iam-init iam-apply
+
+iam-init:
+	@echo "🛡️ Inicializando IAM Factory [$(ENV)]..."
+	cd $(TERRAFORM_DIR)/environments/$(ENV)/iam-management && \
+	terraform init \
+		-backend-config="bucket=$(STATE_BUCKET)" \
+		-backend-config="key=iam-factory/terraform.tfstate" \
+		-backend-config="region=$(REGION)" \
+
+iam-apply:
+	cd $(TERRAFORM_DIR)/environments/$(ENV)/iam-management && terraform apply -auto-approve

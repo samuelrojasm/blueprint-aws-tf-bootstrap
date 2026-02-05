@@ -1,0 +1,44 @@
+# ============================================================================
+# Terraform AWS Bootstrap - Makefile
+# ============================================================================
+# Este Makefile inicializa la infraestructura del Backend de Terraform /
+# para el archivo de estado remoto.
+# Ambiente único: SANDBOX
+# ============================================================================
+
+# ============================================================================
+# Configuración
+# ============================================================================
+
+# Configuración del proyecto
+PROJECT_NAME ?= fesaroma
+REGION 	?= us-east-1
+ENV 	?= sandbox
+AWS_PROFILE ?= default
+
+# Nombres de recursos
+STATE_BUCKET_NAME = $(PROJECT_NAME)-$(ENV)-$(REGION)-terraform-state
+
+# Directorios
+BOOTSTRAP_DIR = ./bootstrap/sandbox
+
+# ============================================================================
+# Comandos principales
+# ============================================================================
+
+.PHONY: init apply bootstrap
+
+# El comando 'bootstrap' prepara la infraestructura inicial (Día 0)
+bootstrap:
+	@echo "🚀 Iniciando Bootstrap para [$(ENV)] en la región [$(REGION)]..."
+	@cd deployments/$(ENV) && \
+	terraform init && \
+	terraform apply -var="environment=$(ENV)" -var="aws_region=$(REGION)" -auto-approve
+
+# Comando para limpiar si algo sale mal
+clean:
+	@echo "🧹 Limpiando archivos temporales de Terraform..."
+	@find . -name ".terraform" -type d -exec rm -rf {} +
+	@find . -name "*.tfstate*" -type f -exec rm -rf {} +
+
+
