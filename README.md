@@ -9,9 +9,9 @@
 
 ## 🎯 Objetivo
 El propósito de este repositorio es realizar el **Bootstrap de la infraestructura core** en AWS para habilitar operaciones automatizadas y seguras:
-    - **Gestión de Estado Remoto:** Configurar un S3 Backend que centralice los archivos de estado (.tfstate), garantizando la consistencia en entornos colaborativos.
-    - **Identidad y Acceso (OIDC):** Establecer una relación de confianza segura entre **GitHub y AWS** para eliminar el uso de credenciales estáticas.
-    - **Estandarización:** Proveer un flujo de comandos unificado mediante **Makefile** para reducir errores manuales en la fase de inicialización.
+- **Gestión de Estado Remoto:** Configurar un S3 Backend que centralice los archivos de estado (.tfstate), garantizando la consistencia en entornos colaborativos.
+- **Identidad y Acceso (OIDC):** Establecer una relación de confianza segura entre **GitHub y AWS** para eliminar el uso de credenciales estáticas.
+- **Estandarización:** Proveer un flujo de comandos unificado mediante **Makefile** para reducir errores manuales en la fase de inicialización.
 
 ---
 
