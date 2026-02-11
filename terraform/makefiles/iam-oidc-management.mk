@@ -21,14 +21,14 @@ iam-oidc-init: sanitize check-config setup-cache check-auth ## Inicializa Terraf
 iam-oidc-plan: sanitize check-auth ## Muestra el plan de ejecución de Terraform
 	@$(DOCKER_TF) -chdir=$(IAM_ROL_GITHUB) plan
  
-iam-oidc-apply: sanitize confirm check-auth
+iam-oidc-apply: sanitize confirm check-auth ## Crea Roles IAM para IdP de Git Hub
 	@echo "🏗️ Creando Roles IAM para IdP de Git Hub ..."
 	@$(DOCKER_TF) -chdir=$(IAM_ROL_GITHUB) apply -auto-approve
 
-iam-oidc-output:
+iam-oidc-output: sanitize check-auth ## Muestra los outputs de Terraform	
 	@$(DOCKER_TF) -chdir=$(IAM_ROL_GITHUB) output
 
-iam-oidc-destroy: sanitize confirm check-auth ## Destruye los recursos generados
+iam-oidc-destroy: sanitize confirm check-auth ## Destruye los roles IAM para IdP de Git Hub
 	@$(DOCKER_TF) -chdir=$(IAM_ROL_GITHUB) destroy -auto-approve
 
 iam-oidc-state-list: sanitize check-auth ## Muestra los nombres e IDs de los recursos
