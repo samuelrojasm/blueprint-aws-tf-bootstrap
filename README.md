@@ -1,11 +1,11 @@
-# 🛠️ AWS Terraform Bootstrap & OIDC Provider
+# 🛠️ Bootstrap (Configuración Inicial) AWS | Terraform + OIDC
 
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?logo=amazon-web-services&logoColor=white)](#)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
-> 🚀 Este repositorio contiene la base de infraestructura necesaria para gestionar estados de Terraform en la nube y establecer una confianza segura entre **GitHub Actions** y **AWS** mediante **OIDC (OpenID Connect)**, eliminando la necesidad de usar llaves de acceso (`AWS_ACCESS_KEY_ID`) de larga duración.
+> 🚀 Este repositorio contiene la base de infraestructura necesaria para gestionar estados de Terraform en la nube y establecer una confianza segura entre **`GitHub Actions`** y **`AWS`** mediante **`OIDC (OpenID Connect)`**, eliminando la necesidad de usar llaves de acceso (**`AWS_ACCESS_KEY_ID`**) de larga duración.
 
 ## 🎯 Objetivo
 El propósito de este repositorio es realizar el **Bootstrap de la infraestructura core** en AWS para habilitar operaciones automatizadas y seguras:
