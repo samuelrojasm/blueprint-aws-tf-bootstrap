@@ -11,21 +11,21 @@
 # Crea Bucket S3
 #----------------------------------
 resource "aws_s3_bucket" "bucket_tf_state" {
-  bucket = "${var.bucket_name}"
+  bucket = var.bucket_name
 
   # Protección contra eliminación accidental desde Terraform
   lifecycle {
     # prevent_destroy = true  # Entornos Dev o Prod
-    prevent_destroy = false   # Entornos de test o Sandbox que son emíferos
+    prevent_destroy = false # Entornos de test o Sandbox que son emíferos
   }
-  
+
   # forzar la destrucción del bucket para eliminar los objetos y versiones antiguos
   # esto es útil para entornos de test o Sandbox que son efímeros
   force_destroy = true
 
   tags = {
-    Name        = "Terraform State Bucket"
-  #  Environment = "${var.purpose}"
+    Name = "Terraform State Bucket"
+    #  Environment = "${var.purpose}"
   }
 }
 

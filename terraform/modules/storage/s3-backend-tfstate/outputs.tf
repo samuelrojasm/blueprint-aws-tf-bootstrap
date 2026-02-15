@@ -5,13 +5,13 @@
 #----------------------------------------
 
 output "state_bucket_name" {
-    description = "Nombre del bucket S3 para estado"
-    value = aws_s3_bucket.bucket_tf_state.id
+  description = "Nombre del bucket S3 para estado"
+  value       = aws_s3_bucket.bucket_tf_state.id
 }
 
 output "state_bucket_arn" {
   description = "ARN del bucket S3"
-  value = aws_s3_bucket.bucket_tf_state.arn
+  value       = aws_s3_bucket.bucket_tf_state.arn
 }
 
 output "aws_region" {
