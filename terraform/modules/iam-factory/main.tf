@@ -23,7 +23,7 @@ resource "aws_iam_role" "this" {
   # Accedemos a var.repositories.repositories porque el YAML tiene esa llave raíz  
   for_each = var.repositories.repositories
 
-  name = "github-role-${each.key}"
+  name        = "github-role-${each.key}"
   description = each.value.description
 
   # Inyectamos los datos del YAML y del Provider en el JSON externo
@@ -32,10 +32,10 @@ resource "aws_iam_role" "this" {
     github_repo  = each.value.github_full_name
   })
 
-    tags = {
-        Repository = each.value.github_full_name
-        ManagedBy  = "Terraform"    
-    }
+  tags = {
+    Repository = each.value.github_full_name
+    ManagedBy  = "Terraform"
+  }
 }
 
 # Adjuntar las Políticas (Multi-Policy)
