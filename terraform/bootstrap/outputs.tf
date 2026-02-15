@@ -9,13 +9,13 @@
 # Outputs del Bucket S3
 #-----------------------------------------------------
 output "state_bucket_name" {
-    description = "Nombre del bucket S3 para estado"
-    value = module.s3_backend.state_bucket_name
+  description = "Nombre del bucket S3 para estado"
+  value       = module.s3_backend.state_bucket_name
 }
 
 output "state_bucket_arn" {
   description = "ARN del bucket S3"
-  value = module.s3_backend.state_bucket_arn
+  value       = module.s3_backend.state_bucket_arn
 }
 
 output "aws_region" {

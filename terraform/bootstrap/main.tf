@@ -14,7 +14,7 @@
 # -----------------------------------------------------
 module "s3_backend" {
   source      = "../modules/storage/s3-backend-tfstate"
-  bucket_name = "${var.bucket_name}"
+  bucket_name = var.bucket_name
 }
 
 # ---------------------------------------------------------------------
@@ -23,11 +23,11 @@ module "s3_backend" {
 # ----------------------------------------------------------------------
 resource "aws_iam_openid_connect_provider" "github" {
   url            = "https://token.actions.githubusercontent.com"
-   client_id_list = ["sts.amazonaws.com"]
- 
+  client_id_list = ["sts.amazonaws.com"]
+
   tags = {
-   # Name    = "${var.}"
-   # Service = "${var.service}"
+    # Name    = "${var.}"
+    # Service = "${var.service}"
   }
 }
 

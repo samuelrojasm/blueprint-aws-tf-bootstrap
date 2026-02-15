@@ -13,9 +13,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Component   = "bootstrap"
-      Owner       = "Plataforma"
-      ManagedBy   = "Terraform"
+      Component = "bootstrap"
+      Owner     = "Plataforma"
+      ManagedBy = "Terraform"
     }
   }
 }
