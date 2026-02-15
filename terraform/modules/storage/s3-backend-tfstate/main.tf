@@ -18,8 +18,10 @@ resource "aws_s3_bucket" "bucket_tf_state" {
     # prevent_destroy = true  # Entornos Dev o Prod
     prevent_destroy = false   # Entornos de test o Sandbox que son emíferos
   }
-
-  # force_destroy = true
+  
+  # forzar la destrucción del bucket para eliminar los objetos y versiones antiguos
+  # esto es útil para entornos de test o Sandbox que son efímeros
+  force_destroy = true
 
   tags = {
     Name        = "Terraform State Bucket"
